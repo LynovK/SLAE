@@ -57,3 +57,5 @@ std::vector<T> dot(const std::vector<T> &X, const CompressedMatrix<T> &CSR) noex
 }
 
 #endif //SLAE_COMPRESSEDCONVERTER_H
+
+//hello
