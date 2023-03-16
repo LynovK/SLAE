@@ -4,10 +4,6 @@
 #pragma once
 #ifndef SLAE_MPI_H
 #define SLAE_MPI_H
-
-/*
-#include "CompressedMatrix.h"
-*/
 #include <cmath>
 #include <fstream>
 
@@ -29,18 +25,18 @@ std::vector<Type> operator*(const std::vector<Type> &a, const Type &c) {
     return result;
 }
 template <typename T>
-T get_r(const CompressedMatrix<T> &CSR, const std::vector<T> &x, const std::vector<T> &b) {
+T get_r(const CompressedMatrix<T> &CSR, const std::vector<T> &x, const std::vector<T> &b) noexcept{
     T r = 0;
-    for (size_t j = 0; j < b.size(); j++) {
-        r += (b[j] - dot(x, CSR)[j]) * (b[j] - dot(x, CSR)[j]);
+    for (size_t j = 0; j < b.size(); ++j) {
+        r += (b[j] - dot(x, CSR)[j]) * (b[j] - dot(x, CSR)[j]); //евклидова длина стобца невязки
     }
     return r;
 }
 
 template<typename T>
-T r_inf(const CompressedMatrix<T> &CSR, const std::vector<T> &x, const std::vector<T> &b) {
+T r_inf(const CompressedMatrix<T> &CSR, const std::vector<T> &x, const std::vector<T> &b) noexcept{
     T r = 0;
-    for (size_t j = 0; j < b.size(); j++) {
+    for (size_t j = 0; j < b.size(); ++j) {
         if (fabs(b[j] - dot(x, CSR)[j]) > r)
             r = fabs(b[j] - dot(x, CSR)[j]);
     }
@@ -49,7 +45,7 @@ T r_inf(const CompressedMatrix<T> &CSR, const std::vector<T> &x, const std::vect
 
 template <typename T>
 std::vector<T> MPI(CompressedMatrix<T> &CSR, const T tolerance, const std::vector<T> &b,
-                       const std::vector<T> &x_0, const T tau) {
+                       const std::vector<T> &x_0, const T tau) noexcept{
     unsigned int count = 0;
     std::vector<T> result = (const std::vector<T> &) x_0, r = dot(result, CSR) - b;
     while (tolerance < r_inf<T>(CSR, result, b)) {
@@ -57,9 +53,9 @@ std::vector<T> MPI(CompressedMatrix<T> &CSR, const T tolerance, const std::vecto
         result = result - r * tau;
         r = dot(result, CSR) - b;
         std::cout << r_inf<T>(CSR, result, b) << std::endl;
-        std::ofstream fout("/home/perseverance/MPI_res.txt", std::ios::app);
+        /*std::ofstream fout("/home/perseverance/MPI_res.txt", std::ios::app);
         fout << r_inf<T>(CSR, result, b) << " " << count << std::endl;
-        fout.close();
+        fout.close();*/
     }
     return result;
 }
@@ -76,9 +72,9 @@ std::vector<T> Jacoby(CompressedMatrix<T> &CSR, const T tolerance, const std::ve
             xt[k] = (1 / CSR.element(k, k)) * (b[k] - dot(xk, CSR)[k] + CSR.element(k, k) * xk[k]);
         }
         xk = xt;
-        std::ofstream fout("/home/perseverance/jacoby_res.txt", std::ios::app);
+        /*std::ofstream fout("/home/perseverance/jacoby_res.txt", std::ios::app);
         fout << r_inf<T>(CSR, xk, b) << " " << count << std::endl;
-        fout.close();
+        fout.close();*/
     }
     return xk;
 }
@@ -100,9 +96,9 @@ std::vector<T> G_Z(const CompressedMatrix<T> &CSR, const T tolerance, const std:
             sum_1 = 0;
             sum_2 = 0;
         }
-        std::ofstream fout("/home/perseverance/gz_res.txt", std::ios::app);
+        /*std::ofstream fout("/home/perseverance/gz_res.txt", std::ios::app);
         fout << r_inf<T>(CSR, xk, b) << " " << count << std::endl;
-        fout.close();
+        fout.close();*/
     }
     return xk;
 }
