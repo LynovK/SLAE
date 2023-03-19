@@ -80,24 +80,6 @@ public:
         return counts_vector_;
     }
 
-
-
-    // взятие элемента по индексу
-/*    T element(const unsigned long i, const unsigned long j) noexcept {
-        if (i > *std::max_element(colomn_index_vector_.begin(), colomn_index_vector_.end()) or
-            i > counts_vector_.size() - 1) {
-            return 0;
-        } else {
-            unsigned long needed = counts_vector_[i], in_row = counts_vector_[i + 1] - counts_vector_[i];
-            for (unsigned long i = needed; i < needed + in_row; i++) {
-                if (colomn_index_vector_[i] == j) {
-                    return vector_of_values_[i];
-                }
-            }
-            return 0;
-        }
-    }*/
-
     //Умножение на вектор
     std::vector<T> dot(const std::vector<T> &X) noexcept{
         std::vector<T> x;

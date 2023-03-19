@@ -4,4 +4,4 @@
 #add_library(slae STATIC ${all} Tridiagonal/ThreeDiagonalSolver.h)
 
 file(GLOB_RECURSE source *.h *.cpp)
-add_library(slae INTERFACE ${source} Iteration_methods/MPI.h Compressed_spars_row/MPI.h Compressed_spars_row/CompressedConverter.h)
+add_library(slae INTERFACE ${source} Iteration_methods/MPI.h Compressed_spars_row/CompressedSorting.h Iteration_methods/ChebishevMPI.h)
