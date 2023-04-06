@@ -1,0 +1,11 @@
+# ninja log v5
+1	2697	1679153881092162418	gtest/CMakeFiles/Google_Tests_run.dir/CompressedMatrixTest.cpp.o	18fef0d38cac26b1
+1	308	1678378595639174271	gtest/CMakeFiles/Google_Tests_run.dir/ShlakTest.cpp.o	2c4631ad38b89ee7
+0	326	1679222679556799012	build.ninja	231eaefde954693a
+1	48	1676661041106180646	src/CMakeFiles/slae.dir/cmake-build-debug/CMakeFiles/3.24.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o	c025aa905fb4b19
+2697	3157	1679153881540156661	gtest/Google_Tests_run	f7d6e7420405aff3
+1	2066	1677073009899043077	src/CMakeFiles/slae.dir/__/gtest/ThreeDiagTest.cpp.o	4ab6a13b79a7ef50
+1	990	1678388265308454512	gtest/CMakeFiles/Google_Tests_run.dir/ThreeDiagTest.cpp.o	762b447a8bf10854
+0	1538	1676661042594169904	src/CMakeFiles/slae.dir/Compressed_spars_row_/CSR.cpp.o	8ecf850ceea4f0ec
+0	2686	1679153881084162521	gtest/CMakeFiles/Google_Tests_run.dir/TaskFourTest.cpp.o	979fd2ade1f4a2b9
+1	6	1677073351624803000	src/libslae.a	13c9f33c15d552dd

@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 #include "../src/Compressed_spars_row/CompressedMatrix.h"
-#include "../src/Compressed_spars_row/CompressedConverter.h"
+#include "../src/Compressed_spars_row/CompressedSorting.h"
 
 
 TEST(CompressedTest, firstTest){
