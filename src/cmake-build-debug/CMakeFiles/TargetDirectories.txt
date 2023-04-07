@@ -1,3 +1,0 @@
-/home/perseverance/Desktop/SLAE/src/cmake-build-debug/CMakeFiles/slae.dir
-/home/perseverance/Desktop/SLAE/src/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/perseverance/Desktop/SLAE/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir

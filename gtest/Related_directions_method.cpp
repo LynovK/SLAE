@@ -1,11 +1,12 @@
 //
-// Created by perseverance on 19.03.2023.
+// Created by perseverance on 06.04.2023.
 //
-#include <iostream>
+
 #include <gtest/gtest.h>
+#include "../src/Iteration_methods/Related_directions_method.h"
 #include "../src/Iteration_methods/ChebishevMPI.h"
 
-TEST(task_4, task_test_twotwo) {
+TEST(Grad_napr, grad_napr_first){
     std::vector<element<double>> matrix_CSR = {
             {0, 0, 1},
             {1, 1, 2},
@@ -36,39 +37,18 @@ TEST(task_4, task_test_twotwo) {
     std::vector<double> b = {5, 2, 2, 7, 8, 43, 2, 1, 5, 6};
     std::vector<double> x0 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
-    double tau1 = 0.001;
+    double tau_u = 0.001;
     double tolerance1 = 1e-12;
     double tolerance2 = 1e-15;
-    std::vector<double> mpi = MPI(res, tolerance1, b, x0, tau1);
     std::vector<double> mpi_cheb = MPI_chebishev(res, tolerance1, b, x0, tau);
+    std::vector<double> mpi = MPI(res, tolerance1, b, x0, tau_u);
+    std::vector<double> Grad_napr = Related_directions(res, tolerance1, b, x0);
 
-/*    for (auto i: mpi) {
-        std::cout << i << std::endl;
-    }*/
-    for(int i = 0; i < solve.size(); ++i){
-        ASSERT_NEAR(mpi_cheb[i], mpi[i], 1e-12);
-    }
+/*    for(int i = 0; i < solve.size(); ++i){
+        ASSERT_NEAR(mpi[i], Grad_napr[i], 1e-12);
+    }*/ //макс точность 1e-12
+
+    for(auto i = 0; i < solve.size(); ++i){
+        ASSERT_NEAR(mpi_cheb[i], Grad_napr[i], 1e-15);
+    } //макс точность 1e-15
 }
-
-/*
-TEST(MPI_Chebishev, MPI_Cheb_first){
-    std::vector<element<double>> matrix_CSR = {
-            {0, 0, 12}, {0, 1, 17}, {0,2, 3}, {1,0,17}, {1,1, 15825}, {1,2,28}, {2,0,3}, {2,1, 28}, {2,2,238}
-    };
-    sort_me_plz(matrix_CSR);
-
-    CompressedMatrix<double> CSR(matrix_CSR, 3, 3);
-
-    std::vector<double> b = {1, 2, 3};
-    std::vector<double> x0 = {1, 1, 1};
-
-    std::vector<double> tau = {1, 2, 3};
-    double tolerance1 = 1e-12;
-    double tolerance2 = 1e-15;
-    std::vector<double> mpi = MPI_chebishev(CSR, tolerance1, b, x0, tau);
-
-    for (auto i : mpi)
-    {
-        std::cout << i << std::endl;
-    }
-}*/

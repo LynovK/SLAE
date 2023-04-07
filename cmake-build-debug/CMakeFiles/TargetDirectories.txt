@@ -1,8 +1,0 @@
-/home/perseverance/Desktop/Perseverance/slaelib/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/perseverance/Desktop/Perseverance/slaelib/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/perseverance/Desktop/Perseverance/slaelib/cmake-build-debug/src/CMakeFiles/slae.dir
-/home/perseverance/Desktop/Perseverance/slaelib/cmake-build-debug/src/CMakeFiles/edit_cache.dir
-/home/perseverance/Desktop/Perseverance/slaelib/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
-/home/perseverance/Desktop/Perseverance/slaelib/cmake-build-debug/gtest/CMakeFiles/Google_Tests_run.dir
-/home/perseverance/Desktop/Perseverance/slaelib/cmake-build-debug/gtest/CMakeFiles/edit_cache.dir
-/home/perseverance/Desktop/Perseverance/slaelib/cmake-build-debug/gtest/CMakeFiles/rebuild_cache.dir
