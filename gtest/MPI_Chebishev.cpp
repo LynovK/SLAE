@@ -1,6 +1,7 @@
 //
 // Created by perseverance on 19.03.2023.
 //
+
 #include <iostream>
 #include <gtest/gtest.h>
 #include "../src/Iteration_methods/ChebishevMPI.h"
@@ -49,6 +50,36 @@ TEST(task_4, task_test_twotwo) {
         ASSERT_NEAR(mpi_cheb[i], mpi[i], 1e-12);
     }
 }
+
+TEST(KR2, second_task) {
+    std::vector<element<double>> matrix_CSR = {
+            {0, 0, 16},
+            {1, 1, 18.0},
+            {2, 2, 21.0},
+            {3, 3, 24.0},
+    };
+
+    double lambda_max = 24.0;
+    double tau1 = 1.8/lambda_max;
+
+    sort_me_plz(matrix_CSR);
+    CompressedMatrix<double> res(matrix_CSR, 4, 4);
+    std::vector<double> tau = Chebishev_solver<double>(8, 3, 16, 24);
+
+    std::vector<double> b = {6, 6, 6, 6};
+    std::vector<double> b_pop = {3, 3, 3, 3};
+    std::vector<double> x0 = {1, 1, 1, 1};
+
+    double tolerance1 = 1e-13;
+    std::vector<double> mpi = MPI(res, tolerance1, b, x0, tau1);
+    std::vector<double> mpi_cheb = MPI_chebishev(res, tolerance1, b, x0, tau);
+
+    for(int i = 0; i < mpi.size(); ++i){
+        ASSERT_NEAR(mpi_cheb[i], mpi[i], 1e-13);
+    }
+}
+
+
 
 /*
 TEST(MPI_Chebishev, MPI_Cheb_first){

@@ -20,14 +20,18 @@ T scal_dot(const std::vector<T> &a, const std::vector<T> &b) noexcept {
 }
 
 template<typename T>
-std::vector<T> Related_directions(CompressedMatrix<T> &CSR, const T tolerance, const std::vector<T> &b,
+std::vector<T> Related_directions(const CompressedMatrix<T> &CSR, const T tolerance, const std::vector<T> &b,
                                   const std::vector<T> &x_0) noexcept {
     unsigned int count = 0;
     std::vector<T> x = x_0;
     std::vector<T> r = CSR.dot(x) - b; //Нач приближение и невязка
     std::vector<T> d = r;
+    std::ofstream out;
+
     //std::vector<T> rk;
     T alfa;
+    out.open("3.txt");
+
     while (tolerance < r_inf<T>(CSR, x, b)) {
         count++;
         alfa = scal_dot(d, r) / scal_dot(d, CSR.dot(d));
@@ -35,10 +39,11 @@ std::vector<T> Related_directions(CompressedMatrix<T> &CSR, const T tolerance, c
         //rk = r;
         const T scal = scal_dot(d, r);
         r = CSR.dot(x) - b;
-        d = r + d * (scal_dot(r, r) / scal); //scal_dot(d, rk));
+        d = r + d * (scal_dot(r, r) / scal);
+        out << r_inf(CSR, r, b) << ' ';
     }
     std::cout << "Related directions count: " << count << std::endl;
-    std::cout << "runtime: " << clock()/1000.0 << std::endl;
+    //std::cout << "runtime: " << clock()/1000.0 << std::endl;
     return x;
 }
 

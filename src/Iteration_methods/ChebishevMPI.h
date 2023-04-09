@@ -14,17 +14,21 @@ template<typename T>
 std::vector<T> MPI_chebishev(const CompressedMatrix<T> &CSR, const T tolerance, const std::vector<T> &b,
                              const std::vector<T> &x_0, const std::vector<T> &tau) noexcept {
     unsigned int count = 0;
-    std::vector<T> result = x_0;
-    std::vector<T> r = CSR.dot(result) - b; //Нач приближение и невязка
-    while (tolerance < r_inf<T>(CSR, result, b)) {
+    std::vector<T> x = x_0;
+    std::ofstream out;
+    out.open("5.txt");
+
+    std::vector<T> r = CSR.dot(x) - b; //Нач приближение и невязка
+    while (tolerance < r_inf<T>(CSR, x, b)) {
         count++;
         for (auto i = 0; i < tau.size(); ++i) {
-            result = result - r * tau[i];
-            r = CSR.dot(result) - b;
+            x = x - r * tau[i];
+            r = CSR.dot(x) - b;
+            out << r_inf(CSR, x, b) << ' ';
         }
     }
     std::cout << "Chebishev count: " << count << std::endl;
-    return result;
+    return x;
 }
 
 template<typename T>

@@ -26,7 +26,7 @@ Symmentric_G_Z(const CompressedMatrix<T> &CSR, const T tolerance, const std::vec
             }
             x_0[i] = 1 / diag * (b[i] - sum);
         }
-        for (auto i = 0; i < CSR.get_count().size() - 1; ++i) {
+        for (auto i =CSR.get_count().size() - 1; i >  0; --i) {
             T sum = 0;
             T diag;
             for (auto j = CSR.get_count()[i]; j < CSR.get_count()[i + 1]; ++j) {

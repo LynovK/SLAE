@@ -40,9 +40,9 @@ TEST(Grad_napr, grad_napr_first){
     double tau_u = 0.001;
     double tolerance1 = 1e-12;
     double tolerance2 = 1e-15;
-    std::vector<double> mpi_cheb = MPI_chebishev(res, tolerance1, b, x0, tau);
+    std::vector<double> mpi_cheb = MPI_chebishev(res, tolerance2, b, x0, tau);
     std::vector<double> mpi = MPI(res, tolerance1, b, x0, tau_u);
-    std::vector<double> Grad_napr = Related_directions(res, tolerance1, b, x0);
+    std::vector<double> Grad_napr = Related_directions(res, tolerance2, b, x0);
 
 /*    for(int i = 0; i < solve.size(); ++i){
         ASSERT_NEAR(mpi[i], Grad_napr[i], 1e-12);

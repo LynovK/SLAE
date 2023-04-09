@@ -8,7 +8,9 @@
 #include "../src/Compressed_spars_row/CompressedSorting.h"
 #include "../src/Iteration_methods/Iteration_methods.h"
 #include "../src/Iteration_methods/Symmetric_G_Z.h"
-
+#include "../src/Iteration_methods/ChebishevMPI.h"
+#include "../src/Iteration_methods/Grad_spusk.h"
+#include <fstream>
 
 TEST(task_4, Gaus_Zeidel_firsttest) {
     std::vector<element<double>> matrix_CSR = {
@@ -72,7 +74,7 @@ TEST(task_4, Gaus_Zeidel_secondtest) {
 
 //symmetric tests
 
-TEST(sym_G_Z, symGZfirst){
+TEST(sym_G_Z, symGZfirst) {
     std::vector<element<double>> matrix_CSR = {
             {0, 0, 10},
             {0, 1, 2},
@@ -97,9 +99,13 @@ TEST(sym_G_Z, symGZfirst){
     //std::vector<double> gz = G_Z(res, tolerance2, b, x0);
     std::vector<double> gaus = G_Z(res, tolerance2, b, x0);
     std::vector<double> sym_gaus = Symmentric_G_Z(res, tolerance2, b, x0);
+    std::vector<double> jacoby = Jacoby(res, tolerance2, b, x0);
 
     //std::vector<double> jac = Jacoby(res, tolerance2, b, x0);
-    for (long i = 0; i < 3; i++) {
+/*    for (long i = 0; i < 3; i++) {
         ASSERT_NEAR(mpi[i], gaus[i], 1e-10);
+    }*/
+    for (long i = 0; i < 3; i++) {
+        ASSERT_NEAR(gaus[i], jacoby[i], 1e-10);
     }
 }

@@ -8,9 +8,9 @@
 
 
 #include <iostream>
-#include <vector>
 #include <cmath>
 #include <limits>
+#include "../src/Vector.h"
 
 template<typename T>
 struct basis {
@@ -92,17 +92,18 @@ T norm(const std::vector<T> &a) {
 struct KeplerOrbit{
         double inclination;
         double semimajorAxis;
-        ...
     };
 
-struct CartesianOrbit{
+/*struct CartesianOrbit{
     Vector3d position;
     Vector3d velocity;
-};
+};*/
 
+/*
 KeplerOrbit cartToKep(const CartesianOrbit& cart, double mu);
 CartesianOrbit kepToCart(const KeplerOrbit& kep, double mu);
 
+*/
 
 template<typename T>
 class Kepler_elements {
