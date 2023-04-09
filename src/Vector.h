@@ -58,7 +58,7 @@ public:
     Vector<T> vect_dot(const Vector<T> &a) noexcept {
         Vector<T> vect(a.size);
         assert(size == a.size);
-        vect[0] = (data_[1] * a[2] - data_[2] * a[1]);
+        vect[0] = (data_[1] * a[2] - data_[2] * a[1])g;
         vect[1] = (data_[2] * a[0] - data_[0] * a[2]);
         vect[2] = (data_[0] * a[1] - a[0] * data_[1]);
         return vect;
