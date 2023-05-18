@@ -1,6 +1,3 @@
-//
-// Created by perseverance on 13.02.23.
-//
 #pragma once
 #ifndef SLAE_COMPRESSEDMATRIX_H
 #define SLAE_COMPRESSEDMATRIX_H
