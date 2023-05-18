@@ -1,7 +1,3 @@
-//
-// Created by perseverance on 05.03.23.
-//
-
 #pragma once
 #ifndef SLAE_MPI_H
 #define SLAE_MPI_H
