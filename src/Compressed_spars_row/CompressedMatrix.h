@@ -4,28 +4,6 @@
 #include <iostream>
 #include <vector>
 
-
-/*
-struct Coords
-{
-    Coords(long x, long y)
-    {
-        col = x;
-        row = y;
-    }
-
-    friend bool operator==(const Coords pair1, const Coords pair2) { return (pair1.col == pair2.col and pair1.row == pair2.row); }
-    friend bool operator<(const Coords pair1, const Coords pair2)
-    {
-        if (pair1.col == pair2.col)
-            return pair1.row < pair2.row;
-        return pair1.col < pair2.col;
-    }
-
-    long col = 0, row = 0;
-};
-*/
-
 template<typename T>
 struct element {
     unsigned int i;
